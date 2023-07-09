@@ -1,0 +1,11 @@
+|    | name            |   stars |   watching |   forks |   issues | language   | created    | updated    | url                                            | purpose   |
+|---:|:----------------|--------:|-----------:|--------:|---------:|:-----------|:-----------|:-----------|:-----------------------------------------------|:----------|
+|  1 | kubernetes      |   99813 |       3247 |   36868 |     2546 | Go         | 2014-06-06 | 2023-07-09 | https://github.com/kubernetes/kubernetes       | devops    |
+|  2 | moby            |   66240 |       2948 |   18761 |     4147 | Go         | 2013-01-18 | 2023-07-09 | https://github.com/moby/moby                   | devops    |
+|  3 | ansible         |   57933 |       1938 |   23498 |      933 | Python     | 2012-03-06 | 2023-07-09 | https://github.com/ansible/ansible             | devops    |
+|  4 | terraform       |   37975 |       1195 |    8739 |     1877 | Go         | 2014-03-13 | 2023-07-09 | https://github.com/hashicorp/terraform         | devops    |
+|  5 | compose         |   29914 |        707 |    4933 |      186 | Go         | 2013-12-09 | 2023-07-09 | https://github.com/docker/compose              | devops    |
+|  6 | vagrant         |   25282 |        736 |    4397 |      684 | Ruby       | 2010-01-21 | 2023-07-09 | https://github.com/hashicorp/vagrant           | devops    |
+|  7 | jenkins         |   21085 |        862 |    8168 |       64 | Java       | 2010-11-22 | 2023-07-09 | https://github.com/jenkinsci/jenkins           | devops    |
+|  8 | travis-ci       |    8352 |        244 |     833 |      120 |            | 2011-02-28 | 2023-07-04 | https://github.com/travis-ci/travis-ci         | devops    |
+|  9 | buildbot        |    5059 |        204 |    1633 |      697 | Python     | 2010-07-06 | 2023-07-04 | https://github.com/buildbot/buildbot           | devops    |
