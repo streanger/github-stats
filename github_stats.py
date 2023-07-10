@@ -1,6 +1,9 @@
+from pathlib import Path
 from typing import NamedTuple
+import markdown
 import pandas as pd
 import requests
+from rich import print
 
 
 class GithubProject(NamedTuple):
@@ -28,7 +31,7 @@ def gather_project_info(project_url):
     collected informations are fixed
     """
     api_url = project_to_api_url(project_url)
-    response = requests.get(api_url)
+    response = requests.get(api_url, headers=HEADERS)
     response_json = response.json()
 
     # handle API limit
@@ -59,18 +62,65 @@ def projects_to_df(projects):
     projects - list[project_url]
     """
     data = []
-    for project_url in projects:
+    total = len(projects)
+    for index, project_url in enumerate(projects, start=1):
+        print(f'{index}/{total}) {project_url}')
         info = gather_project_info(project_url)
         data.append(info)
 
     df = pd.DataFrame(data)
     df['created'] = pd.to_datetime(df['created']).dt.date
     df['updated'] = pd.to_datetime(df['updated']).dt.date
-    df = df.sort_values(['stars'], ascending = [False])
+    df = df.sort_values(
+        ['stars', 'watching', 'forks', 'issues', 'created', 'updated'],
+        ascending = [False, False, False, False, False, False]
+    )
     df.reset_index(drop=True, inplace=True)
     df.index += 1
     return df
 
 
+def list_repos(user):
+    """list all public github repos for specific user"""
+    blank_url = 'https://api.github.com/users/{}/repos?page={}'
+    repos_json_total = []
+    repos_urls = []
+    page = 1
+    while True:
+        url = blank_url.format(user, page)
+        response = requests.get(url, headers=HEADERS)
+        repos_json = response.json()
+        if not repos_json:
+            break
+        repos_json_total.extend(repos_json)
+        respos_urls_page = [item['clone_url'] for item in repos_json]
+        repos_urls.extend(respos_urls_page)
+        page += 1
+    return repos_json_total, repos_urls
+
+
 if __name__ == "__main__":
-    print('github-stats')
+    # set your api token
+    # to create token go to: https://github.com/settings/tokens
+    TOKEN = input('your Github token (you can skip, and use default limits): ')
+    if TOKEN.strip():
+        HEADERS = {
+            "Accept": "application/vnd.github+json",
+            "Authorization": f"Bearer {TOKEN}",
+            "X-GitHub-Api-Version": "2022-11-28"
+            }
+    else:
+        HEADERS = None
+
+    # get github stats
+    repos_json_total, repos_urls = list_repos('streanger')
+    repos_urls = [item.removesuffix('.git') for item in repos_urls]
+    df = projects_to_df(repos_urls)
+    df.to_csv('projects.csv')
+    md = df.to_markdown()
+    Path('projects.md').write_text(md)
+    print(md)
+
+    # html table
+    table_html = markdown.markdown(md, extensions=['markdown.extensions.tables'])
+    Path('index.html').write_text(table_html)
