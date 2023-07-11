@@ -1,7 +1,9 @@
 # github-stats
 github projects specific stats
 
-## visit >> [github-stats website](https://streanger.github.io/github-stats/) <<
+## visit
+- [github-stats website](https://streanger.github.io/github-stats/)
+- [github-stats-markdown](https://github.com/streanger/github-stats/blob/main/projects.md)
 
 ## requirements
 
@@ -16,7 +18,7 @@ pip install pandas requests rich tabulate Markdown pwinput
 ```
 
 
-## compare diff
+## usage & diff compare
 
 ```bash
 python .\github_stats.py
