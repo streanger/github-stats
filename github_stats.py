@@ -1,7 +1,9 @@
 from pathlib import Path
 from typing import NamedTuple
+
 import markdown
 import pandas as pd
+import pwinput
 import requests
 from rich import print
 
@@ -102,7 +104,7 @@ def list_repos(user):
 if __name__ == "__main__":
     # set your api token
     # to create token go to: https://github.com/settings/tokens
-    TOKEN = input('your Github token (you can skip, and use default limits): ')
+    TOKEN = pwinput.pwinput(prompt='your Github token (you can skip, and use default limits): ')
     if TOKEN.strip():
         HEADERS = {
             "Accept": "application/vnd.github+json",
@@ -116,11 +118,25 @@ if __name__ == "__main__":
     repos_json_total, repos_urls = list_repos('streanger')
     repos_urls = [item.removesuffix('.git') for item in repos_urls]
     df = projects_to_df(repos_urls)
-    df.to_csv('projects.csv')
-    md = df.to_markdown()
-    Path('projects.md').write_text(md)
-    print(md)
 
-    # html table
+    # write to csv
+    csv_out = 'projects.csv'
+    df.to_csv(csv_out)
+    print()
+    print(f'saved to: [green]{csv_out}')
+
+    # write to markdown
+    md = df.to_markdown()
+    markdown_out = 'projects.md'
+    Path(markdown_out).write_text(md)
+    print(f'saved to: [green]{markdown_out}')
+
+    # write to html
     table_html = markdown.markdown(md, extensions=['markdown.extensions.tables'])
-    Path('index.html').write_text(table_html)
+    html_out = 'index.html'
+    Path(html_out).write_text(table_html)
+    print(f'saved to: [green]{html_out}')
+
+    # print markdown
+    print()
+    print(md)

@@ -31,7 +31,7 @@
 | 29 | image-analysis                 |       0 |          2 |       0 |        0 | Python     | 2018-04-12 | 2023-02-19 | https://github.com/streanger/image-analysis                 |
 | 30 | win32api-examples              |       0 |          1 |       1 |        0 | Python     | 2019-07-15 | 2023-02-19 | https://github.com/streanger/win32api-examples              |
 | 31 | microcontrollers               |       0 |          1 |       1 |        0 | C          | 2017-03-02 | 2019-03-04 | https://github.com/streanger/microcontrollers               |
-| 32 | github-stats                   |       0 |          1 |       0 |        0 | Python     | 2023-07-09 | 2023-07-09 | https://github.com/streanger/github-stats                   |
+| 32 | github-stats                   |       0 |          1 |       0 |        0 | HTML       | 2023-07-09 | 2023-07-10 | https://github.com/streanger/github-stats                   |
 | 33 | data-acquisition-python-course |       0 |          1 |       0 |        0 | Python     | 2023-05-16 | 2023-05-16 | https://github.com/streanger/data-acquisition-python-course |
 | 34 | green-land                     |       0 |          1 |       0 |        0 | Python     | 2022-12-20 | 2022-12-20 | https://github.com/streanger/green-land                     |
 | 35 | ctf-stuff                      |       0 |          1 |       0 |        0 | Python     | 2019-07-21 | 2023-02-19 | https://github.com/streanger/ctf-stuff                      |
@@ -47,4 +47,4 @@
 | 45 | parsing-files                  |       0 |          1 |       0 |        0 | Python     | 2018-03-22 | 2022-08-19 | https://github.com/streanger/parsing-files                  |
 | 46 | email-crawler                  |       0 |          1 |       0 |        0 | Python     | 2018-03-19 | 2022-08-19 | https://github.com/streanger/email-crawler                  |
 | 47 | tipts                          |       0 |          1 |       0 |        0 | Python     | 2017-10-03 | 2023-02-19 | https://github.com/streanger/tipts                          |
-| 48 | raspberry-project              |       0 |          1 |       0 |        0 | Python     | 2017-07-20 | 2023-02-19 | https://github.com/streanger/raspberry-project              |
+| 48 | raspberry-project              |       0 |          1 |       0 |        0 | Python     | 2017-07-20 | 2023-07-10 | https://github.com/streanger/raspberry-project              |
