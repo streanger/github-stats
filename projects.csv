@@ -1,7 +1,7 @@
 ,name,stars,watching,forks,issues,language,created,updated,url
-1,clients-scanner,4,2,0,1,Python,2020-05-26,2023-07-14,https://github.com/streanger/clients-scanner
-2,tkinter-fonts-viewer,3,2,0,0,Python,2020-05-31,2023-02-19,https://github.com/streanger/tkinter-fonts-viewer
-3,abuseipdb-wrapper,2,3,0,2,Python,2021-11-15,2023-06-29,https://github.com/streanger/abuseipdb-wrapper
+1,tkinter-fonts-viewer,3,2,0,0,Python,2020-05-31,2023-02-19,https://github.com/streanger/tkinter-fonts-viewer
+2,abuseipdb-wrapper,2,3,0,1,Python,2021-11-15,2023-06-29,https://github.com/streanger/abuseipdb-wrapper
+3,clients-scanner,2,2,0,1,Python,2020-05-26,2023-09-08,https://github.com/streanger/clients-scanner
 4,jupyter-notebooks,1,2,0,0,HTML,2022-02-02,2022-08-16,https://github.com/streanger/jupyter-notebooks
 5,interactive-grid,1,2,0,0,Python,2020-09-01,2023-02-19,https://github.com/streanger/interactive-grid
 6,unsplash-get,1,2,0,0,Python,2020-06-11,2023-02-19,https://github.com/streanger/unsplash-get
