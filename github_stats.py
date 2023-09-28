@@ -1,7 +1,6 @@
 from pathlib import Path
 from typing import NamedTuple
 
-import markdown
 import pandas as pd
 import pwinput
 import requests
@@ -101,6 +100,84 @@ def list_repos(user):
     return repos_json_total, repos_urls
 
 
+def to_html(header, table):
+    """convert table with list of lists to html table
+
+    from sets_matcher.py, modified to fit
+    """
+    tab = ' '*4
+    table_head = '\n'.join([f"{tab*4}<th>{column}</th>" for column in header])
+    table_body = ""
+    for row in table:
+        cells = []
+        for index, column in enumerate(row):
+            if index and (type(column) is int) and (column > 0):
+                cell_style = "style=\"background-color: #eeeeee; border-radius: 10px;\""
+            elif str(column).startswith('https://github.com'):
+                column = f"<a href=\"{column}\">{column}</a>"
+                cell_style = ""
+            else:
+                cell_style = ""
+            cells.append(f"{tab*5}<td {cell_style}>{column}</td>\n")
+        cells = ''.join(cells)
+        table_body += f"{tab*4}<tr>\n{cells}{tab*4}</tr>\n"
+
+    style = """\
+        <style>
+        .styled-table {
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.8em;
+            font-family: sans-serif;
+            min-width: 400px;
+        }
+        .styled-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+        }
+        .styled-table th,
+        .styled-table td {
+            padding: 6px 9px;
+            text-align: center;
+        }
+        .styled-table td:first-child {
+            padding: 6px 9px;
+            text-align: right;
+        }
+        .styled-table td:last-child {
+            padding: 6px 9px;
+            text-align: left;
+        }
+        .styled-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+        </style>\
+"""
+
+    template = f"""\
+<html>
+    <head>
+        <title>sets matcher</title>
+        <meta charset="utf-8">
+{style}
+    </head>
+    <body>
+        <table class="styled-table">
+            <thead>
+                <tr>
+{table_head}
+                </tr>
+            </thead>
+            <tbody>
+{table_body}
+            </tbody>
+        </table>
+    </body>
+</html>\
+"""
+    return template
+
+
 if __name__ == "__main__":
     # set your api token
     # to create token go to: https://github.com/settings/tokens
@@ -132,9 +209,11 @@ if __name__ == "__main__":
     print(f'saved to: [green]{markdown_out}')
 
     # write to html
-    table_html = markdown.markdown(md, extensions=['markdown.extensions.tables'])
+    df = df.reset_index(names=['index'])
+    header, table = df.columns, df.values.tolist()
+    html = to_html(header, table)
     html_out = 'index.html'
-    Path(html_out).write_text(table_html)
+    Path(html_out).write_text(html)
     print(f'saved to: [green]{html_out}')
 
     # print markdown
