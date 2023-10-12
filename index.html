@@ -5,7 +5,8 @@
         <style>
         .styled-table {
             border-collapse: collapse;
-            margin: 15px 0;
+            margin-left: auto;
+            margin-right: auto;
             font-size: 0.8em;
             font-family: sans-serif;
             min-width: 400px;
@@ -14,7 +15,6 @@
             background-color: #009879;
             color: #ffffff;
         }
-        .styled-table th,
         .styled-table td {
             padding: 6px 9px;
             text-align: center;
@@ -30,30 +30,113 @@
         .styled-table tbody tr {
             border-bottom: 1px solid #dddddd;
         }
+        .styled-table th {
+            padding: 0;
+            text-align: center;
+        }
+        .styled-table th button {
+            background-color: transparent;
+            border: none;
+            font: inherit;
+            color: inherit;
+            height: 100%;
+            width: 100%;
+            padding: 6px 9px;
+            display: inline-block;
+        }
+        .styled-table th button::after {
+            content: "\00a0\00a0";
+            font-family: 'Courier New', Courier, monospace
+        }
+        .styled-table th button[direction="ascending"]::after {
+            content: " ▲";
+        }
+        .styled-table th button[direction="descending"]::after {
+            content: " ▼";
+        }
+        .marker {
+        background-color: #eeeeee;
+        border-radius: 10px;
+        }
         </style>
+        <script>
+// https://webdesign.tutsplus.com/how-to-create-a-sortable-html-table-with-javascript--cms-92993t
+// https://css-tricks.com/almanac/selectors/a/after-and-before/
+// https://stackoverflow.com/questions/2965229/nbsp-not-working-in-css-content-tag
+// https://stackoverflow.com/questions/7790811/how-do-i-put-variables-inside-javascript-strings
+
+function main() {
+    var table = document.getElementsByTagName("table")[0];
+    var header = table.getElementsByTagName("tr")[0];
+    var headers = header.getElementsByTagName("th");
+    for (var i = 0; i < headers.length; i++) {
+        var btn = headers[i].getElementsByTagName("button")[0];
+        btn.setAttribute("onclick", `table_sorter(${i})`);
+    }
+}
+
+function table_sorter(column) {
+    var table = document.getElementsByTagName("table")[0];
+    var tableBody = table.getElementsByTagName("tbody")[0];
+    var columnButton = table.getElementsByTagName("tr")[0].getElementsByTagName("th")[column].getElementsByTagName("button")[0];
+    var direction = columnButton.getAttribute("direction");
+    if (direction == "ascending") {
+        direction = "descending";
+    } else {
+        direction = "ascending";
+    }
+    var rows = Array.from(table.getElementsByTagName("tr")).slice(1);
+    rows.sort(function(a, b) {
+        var x = a.getElementsByTagName("td")[column].textContent.toLowerCase();
+        var y = b.getElementsByTagName("td")[column].textContent.toLowerCase();
+        if (direction === "ascending") {
+            // try to sort numbers
+            return x - y || x.localeCompare(y);
+        } else {
+            // try to sort numbers
+            return y - x || y.localeCompare(x);
+        }
+    });
+    rows.forEach(function(row) {
+        tableBody.appendChild(row);
+    });
+
+    // show direction using arrow icon
+    var header = table.getElementsByTagName("tr")[0];
+    var headers = header.getElementsByTagName("th");
+    for (var i = 0; i < headers.length; i++) {
+        var btn = headers[i].getElementsByTagName("button")[0];
+        if (i == column) {
+            btn.setAttribute("direction", direction);
+        } else {
+            btn.setAttribute("direction", "");
+        }
+    }
+}
+        </script>
     </head>
-    <body>
+    <body onload=main()>
         <table class="styled-table">
             <thead>
                 <tr>
-                <th>index</th>
-                <th>name</th>
-                <th>stars</th>
-                <th>watching</th>
-                <th>forks</th>
-                <th>issues</th>
-                <th>language</th>
-                <th>created</th>
-                <th>updated</th>
-                <th>url</th>
+                <th><button>index</button></th>
+                <th><button>name</button></th>
+                <th><button>stars</button></th>
+                <th><button>watching</button></th>
+                <th><button>forks</button></th>
+                <th><button>issues</button></th>
+                <th><button>language</button></th>
+                <th><button>created</button></th>
+                <th><button>updated</button></th>
+                <th><button>url</button></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td >1</td>
                     <td >tkinter-fonts-viewer</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">3</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">3</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -64,10 +147,10 @@
                 <tr>
                     <td >2</td>
                     <td >abuseipdb-wrapper</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">3</td>
+                    <td class="marker">2</td>
+                    <td class="marker">3</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">5</td>
                     <td >Python</td>
                     <td >2021-11-15</td>
                     <td >2023-06-29</td>
@@ -76,10 +159,10 @@
                 <tr>
                     <td >3</td>
                     <td >clients-scanner</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">2</td>
+                    <td class="marker">2</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >Python</td>
                     <td >2020-05-26</td>
                     <td >2023-09-08</td>
@@ -88,8 +171,8 @@
                 <tr>
                     <td >4</td>
                     <td >jupyter-notebooks</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">1</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >HTML</td>
@@ -100,8 +183,8 @@
                 <tr>
                     <td >5</td>
                     <td >interactive-grid</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">1</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -112,8 +195,8 @@
                 <tr>
                     <td >6</td>
                     <td >unsplash-get</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">1</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -124,8 +207,8 @@
                 <tr>
                     <td >7</td>
                     <td >person-generator</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -137,9 +220,9 @@
                     <td >8</td>
                     <td >fancy-mermaid</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">2</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >Python</td>
                     <td >2022-03-15</td>
                     <td >2023-02-19</td>
@@ -149,9 +232,9 @@
                     <td >9</td>
                     <td >image-to-ascii</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">2</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >Python</td>
                     <td >2022-01-29</td>
                     <td >2023-02-19</td>
@@ -161,7 +244,7 @@
                     <td >10</td>
                     <td >pastebin</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -173,7 +256,7 @@
                     <td >11</td>
                     <td >snippets</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -185,7 +268,7 @@
                     <td >12</td>
                     <td >namecheck</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -197,7 +280,7 @@
                     <td >13</td>
                     <td >nltk-process</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >None</td>
@@ -209,7 +292,7 @@
                     <td >14</td>
                     <td >console-wrapper</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -221,7 +304,7 @@
                     <td >15</td>
                     <td >sigma-to-elastic-rules</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -233,7 +316,7 @@
                     <td >16</td>
                     <td >malicious-malware</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -245,7 +328,7 @@
                     <td >17</td>
                     <td >tic-tac-toe</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -257,7 +340,7 @@
                     <td >18</td>
                     <td >browser-tools</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >HTML</td>
@@ -269,7 +352,7 @@
                     <td >19</td>
                     <td >domains-checker</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -281,7 +364,7 @@
                     <td >20</td>
                     <td >metadefender-api-wrapper</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -293,7 +376,7 @@
                     <td >21</td>
                     <td >pandas-cmap</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >HTML</td>
@@ -305,7 +388,7 @@
                     <td >22</td>
                     <td >pyasciiart</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -317,7 +400,7 @@
                     <td >23</td>
                     <td >raspberry-scripts</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -329,7 +412,7 @@
                     <td >24</td>
                     <td >life-in-weeks</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >HTML</td>
@@ -341,7 +424,7 @@
                     <td >25</td>
                     <td >vision-stuff</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -353,7 +436,7 @@
                     <td >26</td>
                     <td >tools</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -365,7 +448,7 @@
                     <td >27</td>
                     <td >happy-couple</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -377,7 +460,7 @@
                     <td >28</td>
                     <td >image-analysis</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">2</td>
+                    <td class="marker">2</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -389,8 +472,8 @@
                     <td >29</td>
                     <td >win32api-examples</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
                     <td >Python</td>
                     <td >2019-07-15</td>
@@ -401,8 +484,8 @@
                     <td >30</td>
                     <td >microcontrollers</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
                     <td >C</td>
                     <td >2017-03-02</td>
@@ -413,9 +496,9 @@
                     <td >31</td>
                     <td >duplicate</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >Python</td>
                     <td >2022-11-01</td>
                     <td >2023-09-08</td>
@@ -425,7 +508,7 @@
                     <td >32</td>
                     <td >sets-matcher</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -437,7 +520,7 @@
                     <td >33</td>
                     <td >scrapers</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -449,7 +532,7 @@
                     <td >34</td>
                     <td >github-stats</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
                     <td >0</td>
                     <td >HTML</td>
@@ -461,7 +544,7 @@
                     <td >35</td>
                     <td >data-acquisition-python-course</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -473,7 +556,7 @@
                     <td >36</td>
                     <td >green-land</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -485,7 +568,7 @@
                     <td >37</td>
                     <td >ctf-stuff</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -497,7 +580,7 @@
                     <td >38</td>
                     <td >python-midi</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -509,7 +592,7 @@
                     <td >39</td>
                     <td >pastoke</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -521,7 +604,7 @@
                     <td >40</td>
                     <td >juster</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -533,7 +616,7 @@
                     <td >41</td>
                     <td >network-scanners-and-tools</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -545,7 +628,7 @@
                     <td >42</td>
                     <td >live-to-die</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
                     <td >0</td>
                     <td >JavaScript</td>
@@ -557,7 +640,7 @@
                     <td >43</td>
                     <td >windows-cmd</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -569,7 +652,7 @@
                     <td >44</td>
                     <td >cpp-stuff</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -581,7 +664,7 @@
                     <td >45</td>
                     <td >for-fun</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -593,7 +676,7 @@
                     <td >46</td>
                     <td >crack-archive</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -605,7 +688,7 @@
                     <td >47</td>
                     <td >parsing-files</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -617,7 +700,7 @@
                     <td >48</td>
                     <td >email-crawler</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -629,7 +712,7 @@
                     <td >49</td>
                     <td >tipts</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -641,7 +724,7 @@
                     <td >50</td>
                     <td >raspberry-project</td>
                     <td >0</td>
-                    <td style="background-color: #eeeeee; border-radius: 10px;">1</td>
+                    <td class="marker">1</td>
                     <td >0</td>
                     <td >0</td>
                     <td >Python</td>
@@ -649,7 +732,6 @@
                     <td >2023-07-10</td>
                     <td ><a href="https://github.com/streanger/raspberry-project">https://github.com/streanger/raspberry-project</a></td>
                 </tr>
-
             </tbody>
         </table>
     </body>
