@@ -1,8 +1,8 @@
 |    | name                           |   stars |   watching |   forks |   issues | language   | created    | updated    | url                                                         |
 |---:|:-------------------------------|--------:|-----------:|--------:|---------:|:-----------|:-----------|:-----------|:------------------------------------------------------------|
-|  1 | tkinter-fonts-viewer           |       3 |          2 |       0 |        0 | Python     | 2020-05-31 | 2023-02-19 | https://github.com/streanger/tkinter-fonts-viewer           |
-|  2 | abuseipdb-wrapper              |       2 |          3 |       0 |        5 | Python     | 2021-11-15 | 2023-06-29 | https://github.com/streanger/abuseipdb-wrapper              |
-|  3 | clients-scanner                |       2 |          2 |       0 |        2 | Python     | 2020-05-26 | 2023-09-08 | https://github.com/streanger/clients-scanner                |
+|  1 | clients-scanner                |       3 |          2 |       0 |        2 | Python     | 2020-05-26 | 2024-01-02 | https://github.com/streanger/clients-scanner                |
+|  2 | tkinter-fonts-viewer           |       3 |          2 |       0 |        0 | Python     | 2020-05-31 | 2023-02-19 | https://github.com/streanger/tkinter-fonts-viewer           |
+|  3 | abuseipdb-wrapper              |       2 |          3 |       0 |        5 | Python     | 2021-11-15 | 2023-06-29 | https://github.com/streanger/abuseipdb-wrapper              |
 |  4 | jupyter-notebooks              |       1 |          2 |       0 |        0 | HTML       | 2022-02-02 | 2022-08-16 | https://github.com/streanger/jupyter-notebooks              |
 |  5 | interactive-grid               |       1 |          2 |       0 |        0 | Python     | 2020-09-01 | 2023-02-19 | https://github.com/streanger/interactive-grid               |
 |  6 | unsplash-get                   |       1 |          2 |       0 |        0 | Python     | 2020-06-11 | 2023-02-19 | https://github.com/streanger/unsplash-get                   |
@@ -30,8 +30,8 @@
 | 28 | image-analysis                 |       0 |          2 |       0 |        0 | Python     | 2018-04-12 | 2023-02-19 | https://github.com/streanger/image-analysis                 |
 | 29 | win32api-examples              |       0 |          1 |       1 |        0 | Python     | 2019-07-15 | 2023-02-19 | https://github.com/streanger/win32api-examples              |
 | 30 | microcontrollers               |       0 |          1 |       1 |        0 | C          | 2017-03-02 | 2019-03-04 | https://github.com/streanger/microcontrollers               |
-| 31 | duplicate                      |       0 |          1 |       0 |        1 | Python     | 2022-11-01 | 2023-09-08 | https://github.com/streanger/duplicate                      |
-| 32 | chat                           |       0 |          1 |       0 |        0 | Python     | 2023-11-27 | 2023-11-27 | https://github.com/streanger/chat                           |
+| 31 | chat                           |       0 |          1 |       0 |        1 | Python     | 2023-11-27 | 2023-11-27 | https://github.com/streanger/chat                           |
+| 32 | duplicate                      |       0 |          1 |       0 |        1 | Python     | 2022-11-01 | 2023-09-08 | https://github.com/streanger/duplicate                      |
 | 33 | sets-matcher                   |       0 |          1 |       0 |        0 | Python     | 2023-09-21 | 2023-09-21 | https://github.com/streanger/sets-matcher                   |
 | 34 | scrapers                       |       0 |          1 |       0 |        0 | Python     | 2023-07-24 | 2023-07-24 | https://github.com/streanger/scrapers                       |
 | 35 | github-stats                   |       0 |          1 |       0 |        0 | HTML       | 2023-07-09 | 2023-07-10 | https://github.com/streanger/github-stats                   |
