@@ -17,6 +17,7 @@ class GithubProject(NamedTuple):
     language: str
     created: str
     updated: str
+    alive: bool
     url: str
 
 
@@ -27,6 +28,15 @@ def project_to_api_url(project_url):
     return api_url
 
 
+def bad_credentials_error(github_api_response):
+    """raise exception if bad credentials for github api passed"""
+    if type(github_api_response) is not dict:
+        return
+    if github_api_response.get('message', '') == 'Bad credentials':
+        docs = github_api_response.get('documentation_url', '')
+        raise Exception(f'Bad credentials, go to: {docs}')
+
+
 def gather_project_info(project_url):
     """gather single github project info
     
@@ -35,6 +45,7 @@ def gather_project_info(project_url):
     api_url = project_to_api_url(project_url)
     response = requests.get(api_url, headers=HEADERS)
     response_json = response.json()
+    bad_credentials_error(response_json)
 
     # handle API limit
     message = response_json.get('message', '')
@@ -53,6 +64,7 @@ def gather_project_info(project_url):
         language=response_json['language'],
         created=response_json['created_at'],
         updated=response_json['updated_at'],
+        alive=(not response_json['archived']),
         url=project_url
     )
     return project_info
@@ -74,8 +86,8 @@ def projects_to_df(projects):
     df['created'] = pd.to_datetime(df['created']).dt.date
     df['updated'] = pd.to_datetime(df['updated']).dt.date
     df = df.sort_values(
-        ['stars', 'watching', 'forks', 'issues', 'created', 'updated'],
-        ascending = [False, False, False, False, False, False]
+        ['stars', 'watching', 'forks', 'issues', 'created', 'updated', 'alive'],
+        ascending = [False, False, False, False, False, False, False]
     )
     df.reset_index(drop=True, inplace=True)
     df.index += 1
@@ -92,6 +104,7 @@ def list_repos(user):
         url = blank_url.format(user, page)
         response = requests.get(url, headers=HEADERS)
         repos_json = response.json()
+        bad_credentials_error(repos_json)
         if not repos_json:
             break
         repos_json_total.extend(repos_json)
@@ -99,6 +112,46 @@ def list_repos(user):
         repos_urls.extend(respos_urls_page)
         page += 1
     return repos_json_total, repos_urls
+
+
+def projects_by_topic(topic):
+    """get projects by topic
+    https://docs.github.com/en/rest/search/search?apiVersion=2022-11-28#search-topics
+    https://stackoverflow.com/questions/51912862/how-to-list-all-repositories-for-a-given-topic-with-rest-api-in-github
+    """
+    url = f'https://api.github.com/search/repositories?q=topic:{topic}'
+    response = requests.get(url)
+    projects = response.json()['items']
+
+    # parse data
+    data = []
+    total = len(projects)
+    for index, project_json in enumerate(projects, start=1):
+        print(f"{index}/{total}) {project_json['html_url']}")
+        project_info = GithubProject(
+            name=project_json['name'],
+            stars=project_json['stargazers_count'],  # stargazers_count -> stars
+            watching=project_json['watchers_count'],  # watchers_count is the same as stargazers_count. It seems that is a problem on github api side
+            forks=project_json['forks'],
+            issues=project_json['open_issues'],
+            language=project_json['language'],
+            created=project_json['created_at'],
+            updated=project_json['updated_at'],
+            alive=(not project_json['archived']),
+            url=project_json['html_url'],
+        )
+        data.append(project_info)
+
+    df = pd.DataFrame(data)
+    df['created'] = pd.to_datetime(df['created']).dt.date
+    df['updated'] = pd.to_datetime(df['updated']).dt.date
+    df = df.sort_values(
+        ['stars', 'watching', 'forks', 'issues', 'created', 'updated'],
+        ascending = [False, False, False, False, False, False]
+    )
+    df.reset_index(drop=True, inplace=True)
+    df.index += 1
+    return df
 
 
 def to_html(header, table):
@@ -284,6 +337,7 @@ if __name__ == "__main__":
     repos_json_total, repos_urls = list_repos('streanger')
     repos_urls = [item.removesuffix('.git') for item in repos_urls]
     df = projects_to_df(repos_urls)
+    del df['alive']  # for my projects it is always True as for now
 
     # write to csv
     csv_out = 'projects.csv'
