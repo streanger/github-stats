@@ -8,6 +8,8 @@ import requests
 from rich import print
 
 
+HEADERS = None
+
 class GithubProject(NamedTuple):
     name: str
     stars: int
