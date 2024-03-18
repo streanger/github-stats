@@ -23,6 +23,10 @@ class GithubProject(NamedTuple):
     url: str
 
 
+class WrongTopic(Exception):
+    pass
+
+
 def project_to_api_url(project_url):
     """converts github repository url to api url"""
     project_subpath = project_url.split('github.com')[-1]
@@ -123,7 +127,10 @@ def projects_by_topic(topic):
     """
     url = f'https://api.github.com/search/repositories?q=topic:{topic}'
     response = requests.get(url)
-    projects = response.json()['items']
+    results = response.json()
+    if not results['incomplete_results'] and not results['total_count']:
+        raise WrongTopic(f'Non existing topic choosed: {topic}')
+    projects = results['items']
 
     # parse data
     data = []

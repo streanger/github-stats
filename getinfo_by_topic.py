@@ -1,7 +1,8 @@
 import os
+import sys
 from pathlib import Path
 from rich import print
-from github_stats import projects_to_df, projects_by_topic, to_html
+from github_stats import WrongTopic, projects_by_topic, projects_to_df, to_html
 
 
 def fixed_projects():
@@ -30,8 +31,17 @@ if __name__ == '__main__':
     os.chdir(str(Path(__file__).parent))
 
     # **** collect data ****
-    topic = 'quantum'
-    df = projects_by_topic(topic)
+    args = sys.argv[1:]
+    if not args:
+        print('[yellow bold]usage:')
+        print('[yellow bold]    python getinfo_by_topic.py topic')
+        sys.exit()
+    topic = args[0]
+    try:
+        df = projects_by_topic(topic)
+    except WrongTopic as err:
+        print(f'[red]{err}[/red]')
+        sys.exit()
 
     # **** write csv & md ****
     outcsv = f'{topic}.csv'
