@@ -1,8 +1,8 @@
 |    | name                           |   stars |   watching |   forks |   issues | language   | created    | updated    | url                                                         |
 |---:|:-------------------------------|--------:|-----------:|--------:|---------:|:-----------|:-----------|:-----------|:------------------------------------------------------------|
-|  1 | clients-scanner                |       4 |          2 |       0 |        3 | Python     | 2020-05-26 | 2024-02-26 | https://github.com/streanger/clients-scanner                |
+|  1 | clients-scanner                |       4 |          2 |       0 |        1 | Python     | 2020-05-26 | 2024-02-26 | https://github.com/streanger/clients-scanner                |
 |  2 | tkinter-fonts-viewer           |       3 |          2 |       0 |        0 | Python     | 2020-05-31 | 2023-02-19 | https://github.com/streanger/tkinter-fonts-viewer           |
-|  3 | abuseipdb-wrapper              |       2 |          3 |       1 |        6 | Python     | 2021-11-15 | 2023-06-29 | https://github.com/streanger/abuseipdb-wrapper              |
+|  3 | abuseipdb-wrapper              |       2 |          3 |       1 |        2 | Python     | 2021-11-15 | 2023-06-29 | https://github.com/streanger/abuseipdb-wrapper              |
 |  4 | interactive-grid               |       2 |          2 |       0 |        0 | Python     | 2020-09-01 | 2024-02-05 | https://github.com/streanger/interactive-grid               |
 |  5 | fancy-mermaid                  |       1 |          2 |       0 |        1 | Python     | 2022-03-15 | 2024-01-17 | https://github.com/streanger/fancy-mermaid                  |
 |  6 | jupyter-notebooks              |       1 |          2 |       0 |        0 | HTML       | 2022-02-02 | 2022-08-16 | https://github.com/streanger/jupyter-notebooks              |
