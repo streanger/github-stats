@@ -49,10 +49,10 @@
             font-family: 'Courier New', Courier, monospace
         }
         .styled-table th button[direction="ascending"]::after {
-            content: " ▲";
+            content: "\00a0▲";
         }
         .styled-table th button[direction="descending"]::after {
-            content: " ▼";
+            content: "\00a0▼";
         }
         .marker {
         background-color: #eeeeee;
@@ -162,7 +162,7 @@ function table_sorter(column) {
                     <td class="marker">2</td>
                     <td class="marker">3</td>
                     <td class="marker">1</td>
-                    <td class="marker">2</td>
+                    <td class="marker">1</td>
                     <td >Python</td>
                     <td >2021-11-15</td>
                     <td >2023-06-29</td>
