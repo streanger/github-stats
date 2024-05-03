@@ -1,12 +1,12 @@
 |    | name                           |   stars |   watching |   forks |   issues | language   | created    | updated    | url                                                         |
 |---:|:-------------------------------|--------:|-----------:|--------:|---------:|:-----------|:-----------|:-----------|:------------------------------------------------------------|
-|  1 | clients-scanner                |       4 |          2 |       0 |        1 | Python     | 2020-05-26 | 2024-02-26 | https://github.com/streanger/clients-scanner                |
-|  2 | abuseipdb-wrapper              |       3 |          3 |       1 |        2 | Python     | 2021-11-15 | 2024-03-24 | https://github.com/streanger/abuseipdb-wrapper              |
-|  3 | tkinter-fonts-viewer           |       3 |          2 |       0 |        0 | Python     | 2020-05-31 | 2023-02-19 | https://github.com/streanger/tkinter-fonts-viewer           |
+|  1 | clients-scanner                |       4 |          2 |       0 |        1 | Python     | 2020-05-26 | 2024-04-21 | https://github.com/streanger/clients-scanner                |
+|  2 | tkinter-fonts-viewer           |       4 |          2 |       0 |        0 | Python     | 2020-05-31 | 2024-05-03 | https://github.com/streanger/tkinter-fonts-viewer           |
+|  3 | abuseipdb-wrapper              |       3 |          3 |       1 |        3 | Python     | 2021-11-15 | 2024-03-24 | https://github.com/streanger/abuseipdb-wrapper              |
 |  4 | interactive-grid               |       2 |          2 |       0 |        0 | Python     | 2020-09-01 | 2024-02-05 | https://github.com/streanger/interactive-grid               |
 |  5 | fancy-mermaid                  |       1 |          2 |       0 |        1 | Python     | 2022-03-15 | 2024-01-17 | https://github.com/streanger/fancy-mermaid                  |
-|  6 | jupyter-notebooks              |       1 |          2 |       0 |        0 | HTML       | 2022-02-02 | 2022-08-16 | https://github.com/streanger/jupyter-notebooks              |
-|  7 | unsplash-get                   |       1 |          2 |       0 |        0 | Python     | 2020-06-11 | 2023-02-19 | https://github.com/streanger/unsplash-get                   |
+|  6 | unsplash-get                   |       1 |          2 |       0 |        1 | Python     | 2020-06-11 | 2023-02-19 | https://github.com/streanger/unsplash-get                   |
+|  7 | jupyter-notebooks              |       1 |          2 |       0 |        0 | HTML       | 2022-02-02 | 2022-08-16 | https://github.com/streanger/jupyter-notebooks              |
 |  8 | person-generator               |       1 |          1 |       0 |        0 | Python     | 2017-10-01 | 2022-08-19 | https://github.com/streanger/person-generator               |
 |  9 | namecheck                      |       0 |          2 |       0 |        1 | Python     | 2022-04-10 | 2023-02-18 | https://github.com/streanger/namecheck                      |
 | 10 | image-to-ascii                 |       0 |          2 |       0 |        1 | Python     | 2022-01-29 | 2023-02-19 | https://github.com/streanger/image-to-ascii                 |
@@ -32,7 +32,7 @@
 | 30 | microcontrollers               |       0 |          1 |       1 |        0 | C          | 2017-03-02 | 2019-03-04 | https://github.com/streanger/microcontrollers               |
 | 31 | chat                           |       0 |          1 |       0 |        1 | Python     | 2023-11-27 | 2023-11-27 | https://github.com/streanger/chat                           |
 | 32 | sets-matcher                   |       0 |          1 |       0 |        0 | Python     | 2023-09-21 | 2023-09-21 | https://github.com/streanger/sets-matcher                   |
-| 33 | scrapers                       |       0 |          1 |       0 |        0 | Python     | 2023-07-24 | 2023-07-24 | https://github.com/streanger/scrapers                       |
+| 33 | scrapers                       |       0 |          1 |       0 |        0 | Python     | 2023-07-24 | 2024-04-21 | https://github.com/streanger/scrapers                       |
 | 34 | github-stats                   |       0 |          1 |       0 |        0 | HTML       | 2023-07-09 | 2023-07-10 | https://github.com/streanger/github-stats                   |
 | 35 | data-acquisition-python-course |       0 |          1 |       0 |        0 | Python     | 2023-05-16 | 2023-05-16 | https://github.com/streanger/data-acquisition-python-course |
 | 36 | green-land                     |       0 |          1 |       0 |        0 | Python     | 2022-12-20 | 2022-12-20 | https://github.com/streanger/green-land                     |
