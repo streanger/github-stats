@@ -8,9 +8,9 @@
 |  6 | fancy-mermaid                  |       1 |          2 |       0 |        1 | Python     | 2022-03-15 | 2024-01-17 | https://github.com/streanger/fancy-mermaid                  |
 |  7 | jupyter-notebooks              |       1 |          2 |       0 |        0 | HTML       | 2022-02-02 | 2022-08-16 | https://github.com/streanger/jupyter-notebooks              |
 |  8 | person-generator               |       1 |          1 |       0 |        0 | Python     | 2017-10-01 | 2022-08-19 | https://github.com/streanger/person-generator               |
-|  9 | snippets                       |       0 |          3 |       0 |        0 | Python     | 2022-05-22 | 2024-07-16 | https://github.com/streanger/snippets                       |
-| 10 | namecheck                      |       0 |          2 |       0 |        1 | Python     | 2022-04-10 | 2023-02-18 | https://github.com/streanger/namecheck                      |
-| 11 | image-to-ascii                 |       0 |          2 |       0 |        1 | Python     | 2022-01-29 | 2023-02-19 | https://github.com/streanger/image-to-ascii                 |
+|  9 | namecheck                      |       0 |          2 |       0 |        1 | Python     | 2022-04-10 | 2023-02-18 | https://github.com/streanger/namecheck                      |
+| 10 | image-to-ascii                 |       0 |          2 |       0 |        1 | Python     | 2022-01-29 | 2023-02-19 | https://github.com/streanger/image-to-ascii                 |
+| 11 | snippets                       |       0 |          2 |       0 |        0 | Python     | 2022-05-22 | 2024-07-30 | https://github.com/streanger/snippets                       |
 | 12 | nltk-process                   |       0 |          2 |       0 |        0 |            | 2022-03-13 | 2022-03-13 | https://github.com/streanger/nltk-process                   |
 | 13 | console-wrapper                |       0 |          2 |       0 |        0 | Python     | 2022-03-10 | 2023-02-19 | https://github.com/streanger/console-wrapper                |
 | 14 | sigma-to-elastic-rules         |       0 |          2 |       0 |        0 | Python     | 2021-11-24 | 2023-02-19 | https://github.com/streanger/sigma-to-elastic-rules         |
@@ -30,9 +30,9 @@
 | 28 | win32api-examples              |       0 |          1 |       2 |        0 | Python     | 2019-07-15 | 2023-02-19 | https://github.com/streanger/win32api-examples              |
 | 29 | microcontrollers               |       0 |          1 |       1 |        0 | C          | 2017-03-02 | 2019-03-04 | https://github.com/streanger/microcontrollers               |
 | 30 | chat                           |       0 |          1 |       0 |        1 | Python     | 2023-11-27 | 2024-07-13 | https://github.com/streanger/chat                           |
-| 31 | sets-matcher                   |       0 |          1 |       0 |        0 | Python     | 2023-09-21 | 2023-09-21 | https://github.com/streanger/sets-matcher                   |
+| 31 | sets-matcher                   |       0 |          1 |       0 |        0 | Python     | 2023-09-21 | 2024-08-07 | https://github.com/streanger/sets-matcher                   |
 | 32 | scrapers                       |       0 |          1 |       0 |        0 | Python     | 2023-07-24 | 2024-07-04 | https://github.com/streanger/scrapers                       |
-| 33 | github-stats                   |       0 |          1 |       0 |        0 | HTML       | 2023-07-09 | 2024-05-03 | https://github.com/streanger/github-stats                   |
+| 33 | github-stats                   |       0 |          1 |       0 |        0 | HTML       | 2023-07-09 | 2024-07-17 | https://github.com/streanger/github-stats                   |
 | 34 | data-acquisition-python-course |       0 |          1 |       0 |        0 | Python     | 2023-05-16 | 2023-05-16 | https://github.com/streanger/data-acquisition-python-course |
 | 35 | green-land                     |       0 |          1 |       0 |        0 | Python     | 2022-12-20 | 2022-12-20 | https://github.com/streanger/green-land                     |
 | 36 | duplicate                      |       0 |          1 |       0 |        0 | Python     | 2022-11-01 | 2023-09-08 | https://github.com/streanger/duplicate                      |
@@ -48,5 +48,5 @@
 | 46 | crack-archive                  |       0 |          1 |       0 |        0 | Python     | 2018-06-30 | 2022-08-19 | https://github.com/streanger/crack-archive                  |
 | 47 | parsing-files                  |       0 |          1 |       0 |        0 | Python     | 2018-03-22 | 2023-07-19 | https://github.com/streanger/parsing-files                  |
 | 48 | email-crawler                  |       0 |          1 |       0 |        0 | Python     | 2018-03-19 | 2022-08-19 | https://github.com/streanger/email-crawler                  |
-| 49 | tipts                          |       0 |          1 |       0 |        0 | Python     | 2017-10-03 | 2023-02-19 | https://github.com/streanger/tipts                          |
+| 49 | tipts                          |       0 |          1 |       0 |        0 | Python     | 2017-10-03 | 2024-08-05 | https://github.com/streanger/tipts                          |
 | 50 | raspberry-project              |       0 |          1 |       0 |        0 | Python     | 2017-07-20 | 2023-07-10 | https://github.com/streanger/raspberry-project              |
